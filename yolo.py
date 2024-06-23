@@ -3,18 +3,11 @@ import os
 import cv2
 import json
 
-amount_of_iterations = 80000
-#divide by 3
+amount_of_iterations = 75000
 learning_rate = 0.0005
 
 def train_yolo_model(data_path, output_dir):
     model = YOLO('yolov8n.pt')  # Initialize YOLO model with a pre-trained model
-
-    
-    
-    #print("Training model")
-    #print(data_path)
-    #get folderpath which is datapath without .yaml
     folder_path = data_path.split(".")[0] + "/labels"
     amount_of_images = len(os.listdir(folder_path))
 
@@ -24,12 +17,7 @@ def train_yolo_model(data_path, output_dir):
         lr0=learning_rate,
         optimizer='Adam',
         imgsz=640,
-        batch=2,  # Adjust based on your GPU memory
-        #steps at which to decrease learning rate 60% and 80% of the max iterations
-        #step=[int(0.6 * amount_of_iterations), int(0.8 * amount_of_iterations)],
-        #gamma is the factor by which the learning rate is reduced
-        #warmup of 1000 iterations
-        #warmup=1000,
+        batch=2,  
         project=output_dir,
         name='yolov8_training',
         exist_ok=True,
@@ -39,13 +27,6 @@ def train_yolo_model(data_path, output_dir):
 
     return os.path.join(output_dir, 'yolov8_training', 'weights', 'best.pt')
 
-# def predict_yolo(image_path, model):
-#     results = model(image_path)
-#     if len(results) == 0:
-#         return "Unknown"
-#     if len(results[0].boxes.cls) == 0:
-#         return "Unknown"
-#     return results[0].names[results[0].boxes.cls[0].item()]
 
 
 def predict_normal(image_path, model):

@@ -29,7 +29,8 @@ def create_bar_plot(labels, values, title, legend_labels):
     
     # Add legend
     handles = [plt.Rectangle((0,0),1,1, color=color) for color in colors]
-    ax.legend(handles, legend_labels, loc='upper right', bbox_to_anchor=(1.0, 1.0), fontsize=10)
+    #ax.legend(handles, legend_labels, loc='upper right', fontsize=10)
+    ax.legend(handles, legend_labels, loc='upper left', fontsize=10)
     
     plt.show()
 
@@ -76,7 +77,7 @@ root_nodes_grouped_3_super_classes = 0.987247924
 
 labels_exp4 = ['Post grouped 5 super-classes', 'Grouped 5 super-classes', 'Post grouped 3 super-classes', 'Grouped 3 super-classes']
 values_exp4 = [root_nodes_post_grouped_5_super_classes, root_nodes_grouped_5_super_classes, root_nodes_post_grouped_3_super_classes, root_nodes_grouped_3_super_classes]
-legend_labels_exp4 = ['Post Grouped 5', 'Grouped 5', 'Post Grouped 3', 'Grouped 3']
+legend_labels_exp4 = ['Trained on normal classes. predicting on 5 super-classes', 'trained on super-classes. predicting on 5 super-classes', 'trained on normal classes. predicting on 3 super-classes', 'trained on super-classes. predicting on 3 super-classes']
 
 create_bar_plot(labels_exp4, values_exp4, 'Experiment 4', legend_labels_exp4)
 
